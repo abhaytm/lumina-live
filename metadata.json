@@ -1,0 +1,8 @@
+{
+  "name": "Lumina Live",
+  "description": "A premium live commerce experience blending social streaming with instant purchasing. Features a modern white-to-orange aesthetic.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ]
+}
