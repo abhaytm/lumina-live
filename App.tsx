@@ -18,8 +18,19 @@ const App: React.FC = () => {
     }, [user]);
 
     return (
-        <AppNavigator />
-    );
-};
+        <div
+          style={{
+            minHeight: "100vh",
+            background: "white",
+            color: "black",
+            fontSize: "24px",
+            padding: "40px"
+          }}
+        >
+          APP IS RENDERING
+        </div>
+      );
+      
+}; 
 
 export default App;
