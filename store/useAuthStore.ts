@@ -8,6 +8,7 @@ interface AuthState {
   user: User | null;
   isAuthenticated: boolean;
   isGuest: boolean;
+  isInitialized: boolean; // 👈 ADD THIS
   isLoading: boolean;
   error: string | null;
   initialize: () => void;
@@ -19,6 +20,7 @@ interface AuthState {
 export const useAuthStore = create<AuthState>((set, get) => ({
   user: null,
   isAuthenticated: false,
+  isInitialized: false,
   isGuest: false,
   isLoading: false,
   error: null,
@@ -26,10 +28,22 @@ export const useAuthStore = create<AuthState>((set, get) => ({
   initialize: () => {
     const access = TokenStorage.getAccessToken();
     const savedUser = localStorage.getItem('lumina_user');
-    if (access && savedUser) set({ isAuthenticated: true, user: JSON.parse(savedUser), isGuest: false });
-    else set({ isGuest: true });
+  
+    if (access && savedUser) {
+      set({
+        isAuthenticated: true,
+        user: JSON.parse(savedUser),
+        isGuest: false,
+        isInitialized: true
+      });
+    } else {
+      set({
+        isGuest: true,
+        isInitialized: true
+      });
+    }
   },
-
+  
   /**
    * AUTH STATE UPDATE CODE
    */
